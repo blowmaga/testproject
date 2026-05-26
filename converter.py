@@ -18,7 +18,7 @@ def load_rates():
                     rates[currency] = rate  
 
     except FileNotFoundError:
-        print(f"Файл {FILENAME} не найден. Создаю новый с базовыми курсами.")
+        print(f"Файл {FILENAME} не найден. Создаем новый с базовыми курсами.")
         rates = {"USD": 75.5, "EUR": 85.2, "RUB": 1.0}
         save_rates(rates)  
         
@@ -35,7 +35,6 @@ def save_rates(rates):
 
 
 def convert_currency(amount, from_cur, to_cur, rates):
-    """Переводит деньги из одной валюты в другую."""
     if from_cur not in rates:
         return f"Ошибка: валюта {from_cur} не найдена в базе."
     if to_cur not in rates:
@@ -45,4 +44,4 @@ def convert_currency(amount, from_cur, to_cur, rates):
     
     result = amount_in_rubles / rates[to_cur]
     
-    return (result, 2)
+    return round(result, 2)
